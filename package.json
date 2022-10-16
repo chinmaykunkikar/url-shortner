@@ -4,7 +4,8 @@
   "description": "A URL shortner made using Node, MongoDB, and React",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --config nodemon.json src/app.ts",
+    "build": "tsc"
   },
   "keywords": [
     "url",
@@ -22,6 +23,7 @@
     "express": "^4.18.2",
     "mongoose": "^6.6.5",
     "nanoid": "^4.0.0",
+    "nodemon": "^2.0.20",
     "yup": "^0.32.11"
   },
   "devDependencies": {
