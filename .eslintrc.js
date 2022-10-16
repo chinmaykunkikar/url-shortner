@@ -13,6 +13,7 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     "prettier/prettier": "warn",
-    "no-unused-vars": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-misused-promises": "off",
   },
 };
