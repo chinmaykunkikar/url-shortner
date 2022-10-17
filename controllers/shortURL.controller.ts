@@ -7,3 +7,14 @@ export async function createShortURL(req: Request, res: Response) {
 
   return res.send(newURL);
 }
+
+export async function handleRedirect(req: Request, res: Response) {
+  const { shortId } = req.params;
+
+  // Query database for the destination
+  const destResult = await shortURL.findOne({ shortId }).lean();
+
+  if (destResult === null) return res.sendStatus(404);
+
+  return res.redirect(destResult.destination);
+}
