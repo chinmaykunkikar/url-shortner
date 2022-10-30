@@ -1,14 +1,16 @@
+import { forwardRef } from "react";
+
 type InputProps = {
-  inputId: string;
+  inputid: string;
   label: string;
   type: string;
   placeholder?: string;
-  inputIcon: JSX.Element;
+  inputicon: JSX.Element;
   onChangeHandler: React.ChangeEventHandler;
 };
 
-export default function Input(props: InputProps) {
-  const { inputId, label, type, placeholder, inputIcon, onChangeHandler } =
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const { inputid: inputId, label, type, placeholder, inputicon: inputIcon, onChangeHandler } =
     props;
 
   return (
@@ -20,6 +22,7 @@ export default function Input(props: InputProps) {
       </label>
       <div className='relative flex w-full items-center text-gray-400'>
         <input
+          ref={ref}
           {...props}
           className='w-full rounded-2xl border border-slate-300 bg-gray-100 bg-opacity-50 px-3 py-2 pr-8
           text-sm placeholder-slate-400 shadow-sm invalid:border-rose-500 invalid:text-rose-600
@@ -34,4 +37,6 @@ export default function Input(props: InputProps) {
       </div>
     </>
   );
-}
+});
+
+export default Input;

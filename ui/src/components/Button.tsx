@@ -1,11 +1,11 @@
 type ButtonProps = {
   disabled: boolean;
-  btnText: string;
-  btnIcon?: JSX.Element;
+  btntext: string;
+  btnicon?: JSX.Element;
 };
 
 export default function Button(props: ButtonProps) {
-  const { disabled, btnText, btnIcon } = props;
+  const { disabled, btntext: btnText, btnicon: btnIcon } = props;
   return (
     <button
       {...props}

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { createRef, useRef, useState } from "react";
 import axios from "axios";
 import clsx from "clsx";
 import { ArrowRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -10,7 +10,7 @@ import Input from "./Input";
 export default function URLShortnerForm() {
   const [destination, setDestination] = useState<string>();
   const [shortId, setShortId] = useState<string>();
-  const inputField = useRef<HTMLInputElement>(null);
+  const inputFieldRef = createRef<HTMLInputElement>();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,21 +25,22 @@ export default function URLShortnerForm() {
   const handleReset = (event: any) => {
     event.preventDefault();
     setDestination("");
-    if (inputField.current) inputField.current.value = "";
+    if (inputFieldRef.current) inputFieldRef.current.value = "";
   };
 
   return (
     <div className='m-2 w-4/5 max-w-xl p-5 lg:w-2/3 xl:w-1/2 '>
       <form onSubmit={handleSubmit} className='flex flex-col items-center'>
         <Input
-          inputId='url-input'
+          ref={inputFieldRef}
+          inputid='url-input'
           label='Enter a URL'
           type='url'
           placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
           onChangeHandler={(input: React.ChangeEvent<HTMLInputElement>) =>
             setDestination(input.target.value)
           }
-          inputIcon={
+          inputicon={
             <XMarkIcon
               onClick={handleReset}
               className={clsx(
@@ -53,8 +54,8 @@ export default function URLShortnerForm() {
         <br />
         <Button
           disabled={!destination}
-          btnText={"Shorten Link"}
-          btnIcon={<ArrowRightIcon className='h-6 w-6 pl-2' />}
+          btntext={"Shorten Link"}
+          btnicon={<ArrowRightIcon className='h-6 w-6 pl-2' />}
         />
         {shortId ? (
           <a
