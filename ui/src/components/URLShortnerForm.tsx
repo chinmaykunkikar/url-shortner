@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from "react";
+import React, { createRef, useState } from "react";
 import axios from "axios";
 import clsx from "clsx";
 import { ArrowRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -6,6 +6,7 @@ import { ArrowRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { SERVER_ENDPOINT } from "../config";
 import Button from "./Button";
 import Input from "./Input";
+import Output from "./Output";
 
 export default function URLShortnerForm() {
   const [destination, setDestination] = useState<string>();
@@ -58,9 +59,7 @@ export default function URLShortnerForm() {
           btnicon={<ArrowRightIcon className='h-6 w-6 pl-2' />}
         />
         {shortId ? (
-          <a
-            className='mt-5 text-xl text-pink-500 decoration-sky-500/60 decoration-2 hover:underline'
-            href={`${SERVER_ENDPOINT}/${shortId}`}>{`${SERVER_ENDPOINT}/${shortId}`}</a>
+          <Output endpoint={SERVER_ENDPOINT} shortId={`thisui`} />
         ) : null}
       </form>
     </div>
