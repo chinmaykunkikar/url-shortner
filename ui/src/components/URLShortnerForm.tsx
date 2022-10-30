@@ -26,6 +26,7 @@ export default function URLShortnerForm() {
   const handleReset = (event: any) => {
     event.preventDefault();
     setDestination("");
+    setShortId("")
     if (inputFieldRef.current) inputFieldRef.current.value = "";
   };
 
@@ -46,7 +47,7 @@ export default function URLShortnerForm() {
               onClick={handleReset}
               className={clsx(
                 destination
-                  ? "absolute right-2 h-5 w-5 stroke-[3px] hover:stroke-red-500"
+                  ? "absolute right-2 h-5 w-5 cursor-pointer stroke-neutral-50 stroke-[3px] hover:stroke-red-500"
                   : "hidden"
               )}
             />
@@ -55,11 +56,11 @@ export default function URLShortnerForm() {
         <br />
         <Button
           disabled={!destination}
-          btntext={"Shorten Link"}
-          btnicon={<ArrowRightIcon className='h-6 w-6 pl-2' />}
+          btntext={"Shorten link"}
+          btnicon={<ArrowRightIcon className='h-6 w-6 pl-2 stroke-[3px]' />}
         />
         {shortId ? (
-          <Output endpoint={SERVER_ENDPOINT} shortId={`thisui`} />
+          <Output endpoint={SERVER_ENDPOINT} shortId={shortId} />
         ) : null}
       </form>
     </div>
